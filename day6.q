@@ -3,7 +3,7 @@ i0: read0 `:data/day6_test.txt
 
 / locate c in m
 locate:{[m;c]
- first raze til[count m] ,/:' where each m=c
+ raze til[count m] ,/:' where each m=c
  }
 
 /follow direction until obstacle
@@ -13,8 +13,8 @@ follow:{[m;p;v]
  }
 
 
-d1p1:{[m]
- p: locate[m;"^"];
+visit:{[m]
+ p: first locate[m;"^"];
  v: -1 0;
  m:.[m;p;:;"."];
  visited: 0 * `int$ m;
@@ -32,28 +32,43 @@ d1p1:{[m]
  visited
  }
 
+d1p1:{[m]
+ sum sum visit[m]
+ }
 
-d1p2:{[m]
- p: locate[m;"^"];
+/// part 2
+
+cycle:{[m]
+ p: first locate[m;"^"];
  v: -1 0;
  m:.[m;p;:;"."];
- visited: 0 * `int$ m;
+ corners: (count[m], count[m]) # enlist 00000000b;
 
+ step:0;
  inside: 1b;
- bs:0;
  while[all inside;
   l: follow[m;p;v];
-  vn: v[1], -1*v[0]; / turn right
-  bs+: sum visited ./: last each follow[m;;vn] each 1_l;
-  
-  visited: .[;;:;1]/[visited;l];
-  p: last l;
-  inside: (p+v) < count[m];
-  v: vn;
 
+  f: 0b vs "x"$1 2 4 8 @ step;
+  p: last l;
+  if[any (corners . p) & f;:1b];
+  / $[; :1b];
+  corners: .[corners;p;|;f];
+  
+  inside: (p+v) < count[m];
+  v: v[1], -1*v[0]; / turn right  
+  step: mod[step+1;4];
   ];
- bs
- /visited
+ 
+ 0b
+ }
+
+
+d1p2:{[m]
+ path: locate[visit[m];1];
+
+ cs: {[m;x] if["^" = m . x;:0b]; cycle (.[m;x;:;"#"]) }[m;] each path;
+ sum cs
  }
 
 
