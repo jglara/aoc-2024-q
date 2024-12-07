@@ -9,6 +9,8 @@ This repo are the solutions of [Advent Of Code 2024](https://adventofcode/2024)
 | [Day 4: Ceres Search](https://adventofcode.com/2024/day/4)        | [Code](day4.q)                        |                                 |
 | [Day 5: Print Queue](https://adventofcode.com/2024/day/5)         | [Code](day5.q)                        | Topological sort?               |
 | [Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6)     | [Code](day6.q)                        | Brute search of cycles on part2 |
+| [Day 7: Bridge Repair](https://adventofcode.com/2024/day/7)       | [Code](day7.q)                        | Brute search                    |
+
 
 
 
