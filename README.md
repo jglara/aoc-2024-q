@@ -8,7 +8,8 @@ This repo are the solutions of [Advent Of Code 2024](https://adventofcode/2024)
 |                                                                   | [Code](day3.q)                        |                                 |
 | [Day 4: Ceres Search](https://adventofcode.com/2024/day/4)        | [Code](day4.q)                        |                                 |
 | [Day 5: Print Queue](https://adventofcode.com/2024/day/5)         | [Code](day5.q)                        | Topological sort?               |
-| [Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6)     | [Code](day6.q)                        |                                 |
+| [Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6)     | [Code](day6.q)                        | Brute search of cycles on part2 |
+
 
 
 
