@@ -11,6 +11,8 @@ This repo are the solutions of [Advent Of Code 2024](https://adventofcode/2024)
 | [Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6)       | [Code](day6.q)                        | Brute search of cycles on part2 |
 | [Day 7: Bridge Repair](https://adventofcode.com/2024/day/7)         | [Code](day7.q)                        | Brute search                    |
 | [Day 8: Resonant Collinearity](https://adventofcode.com/2024/day/8) | [Code](day8.q)                        |                                 |
+| [Day 9: Disk fragmenter](https://adventofcode.com/2024/day/9)       | [Code](day9.q)                        | Naive solution, but works       |
+
 
 
 
