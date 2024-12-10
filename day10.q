@@ -15,11 +15,18 @@ step:{[m;p]
 / trailpaths starting at s
 trailpath:{[m;s]
  ends: 9 {[m;ps] raze m step/: ps }[m;]/ enlist s;
- distinct ends
+ ends
  }
 
 
 d9p1:{[m]
+ start: locate[m;"0"];
+ scores: distinct each m trailpath/: start;
+ sum count each scores
+ }
+
+
+d9p2:{[m]
  start: locate[m;"0"];
  scores: m trailpath/: start;
  sum count each scores
