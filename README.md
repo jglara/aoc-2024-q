@@ -13,6 +13,8 @@ This repo are the solutions of [Advent Of Code 2024](https://adventofcode/2024)
 | [Day 8: Resonant Collinearity](https://adventofcode.com/2024/day/8) | [Code](day8.q)                        |                                 |
 | [Day 9: Disk fragmenter](https://adventofcode.com/2024/day/9)       | [Code](day9.q)                        | Naive solution, but works       |
 | [Day 10: Hoof it](https://adventofcode.com/2024/day/10)             | [Code](day10.q)                       | Easy path tracking problem      |
+| [Day 11: Plutonian Pebbles](https://adventofcode.com/2024/day/11)   | [Code](day11.q)                       |                                 |
+
 
 
 
