@@ -1,22 +1,22 @@
 i: read0 `:data/day12.txt
 i0: ("AAAA"; "BBCD"; "BBCC"; "EEEC")
 i1: ("OOOOO"; "OXOXO"; "OOOOO"; "OXOXO"; "OOOOO")
+i2: read0 `:data/data12_test2.txt
 
-merge_r:{[as;gs]
- asgs: as ,' gs;
- r: ({if[x[0]=y[0]; :x]; y}\) asgs;
- r[;1]
+merge1:{[gs;gid1;gid2]
+ ps: locate[gs;gid1];
+ .[;;:;gid2]/[gs;ps]
  }
+
+merge_r:{[m;gs;nr]
+  {[gs;r;c] merge1[gs; gs[r;c]; gs[r;c-1]]}[;nr;]/[gs; where not differ m[nr]]
+  }
 
 merge:{[m]
  gs: #[count[m], count[m]; til[count[m] *count m]];
 
- i:0;
- while[i< count[m];
-  gs: m merge_r' gs;
-  gs: flip flip[m] merge_r' flip[gs];
-  i +: 1;
-  ];
+ gs: merge_r[m;;]/[gs; til count[m]];
+ gs: flip merge_r[flip m;;]/[flip[gs]; til count[m]];
 
  gs
  }
