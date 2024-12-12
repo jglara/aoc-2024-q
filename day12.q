@@ -1,4 +1,4 @@
-i: read0 `:data/day12.txt
+i: read0 `:data/day12.txtxo
 i0: ("AAAA"; "BBCD"; "BBCC"; "EEEC")
 i1: ("OOOOO"; "OXOXO"; "OOOOO"; "OXOXO"; "OOOOO")
 i2: read0 `:data/data12_test2.txt
@@ -30,6 +30,18 @@ perimeter:{[ps]
  count per
  }
 
+sides:{[ps]
+ per: (raze (0 1; 0 -1; 1 0; -1 0) +/:\: ps) except ps;
+ rws: {[per;x] per[;1] where per[;0] = x}[per;] each distinct per[;0];
+ rws: {x where 1<> 0, 1_ deltas x} each (distinct per[;0])!rws;
+ ps: raze (key rws) ,/:' value rws;
+ 
+ rws: {[ps;x] ps[;0] where ps[;1] = x}[ps;] each distinct ps[;1];
+ rws: {x where 1<> 0, 1_ deltas x} each (distinct ps[;1])!rws;
+ rws: raze (key rws) ,/:' value rws;
+ count rws
+ }
+
 d12p1:{[m]
  m: merge[m];
  gs: distinct raze distinct each m;
@@ -39,3 +51,14 @@ d12p1:{[m]
 
  sum ps *' as
  }
+
+d12p2:{[m]
+ m: merge[m];
+ gs: distinct raze distinct each m;
+ rs: m locate/: gs;
+ sds: sides each rs;
+ as: count each rs;
+
+ sum sds *' as
+ }
+
