@@ -17,7 +17,9 @@ This repo are the solutions of [Advent Of Code 2024](https://adventofcode/2024)
 | [Day 12: Garden Groups](https://adventofcode.com/2024/day/12)       | [Code](day12.q)                       | Count corners to get sides for part 2                                                                                                                                      |
 | [Day 13: Claw Contraption](https://adventofcode.com/2024/day/13)    | [Code](day13.q) [Parse](day13.pl)     | parse input with perl, use matric inverse to solve each eq. system, taking care to filter non integer solutions                                                            |
 | [Day 14: Restroom Redoubt](https://adventofcode.com/2024/day/14)    | [Code](day14.q) [Parse](day14.pl)     | parse input with perl, First part is easy, \n second part is just a trick of finding minimal point where robots are almost in the same quadrant, but I need to optimize it |
+| [Day 15: Warehouse woes](https://adventofcode.com/2024/day/15)      | [Code](day15.q)                       |                                                                                                                                                                            |
 |                                                                     |                                       |                                                                                                                                                                            |
+
 
 
 
