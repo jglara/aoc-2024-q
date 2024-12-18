@@ -1,4 +1,4 @@
-m:  read0 `:data/day16.txt
+m:  read0 `:data/day16_test2.txt
 
 D: (0 1; -1 0; 0 -1; 1 0); /  > ^ < v
 
@@ -14,7 +14,7 @@ upd1:{[m;r;c;d;md]
  }
 
 
-d16p1:{[m]
+d16:{[m]
  s: first locate[m;"S"];
  e: first locate[m;"E"];
  m: .[m;s;:;"."];
@@ -42,8 +42,22 @@ d16p1:{[m]
   t: t lj `r`c`d xkey u;
   u: update mdp:md from u;
   ];
+ 0N!select min(md) from t where r=e[0],c=e[1];
 
- select min(md) from t where r=e[0],c=e[1]
+
+ / part 2 
+ /tt: `p xkey select p:(r,'c) , md from t where md=(min;md) fby ([]r;c);
+ queue: select from t where r=e[0],c=e[1], md=min(md);
+ 
+ while[ count (select from visited where r=s[0],c=s[1]);
+  visited ,: queue;
+  nq1: (ungroup select r, c, d: (d {mod[x+y;3]}/:\:-1 1) from queue) lj t;
+  nq2: select r: r-D[d;0], c: c-D[d;1], d from queue;
+  nq2: (select from nq2 where "." = (m ./: r,'c)) lj t;
+  queue: select from nq1,nq2 where md=min(md),md>0;
+  ];
+
+ break;
  
  }
 
