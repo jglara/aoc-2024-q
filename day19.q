@@ -25,24 +25,31 @@ d19p1:{[input]
 // Part 2
 
 allpats:{[pats;tw]
- m:first value MEMO[`$tw];
+ stw: `$tw;
+ m:first value MEMO[stw];
  if [not null m; :m];
  if[ 0 = count tw; :1];
  ppats: pats where any each 0 = tw ss/: pats;
  
  if[0=count ppats;
-  MEMO[`$tw]:0;
+  MEMO[stw]:0;
   :0 ];
  
  tws: _[;tw] each count each ppats;
 
  total:0;
  while[ count tws;
-  total +: .z.s[pats] first tws;
+
+  $[ 0=count first tws; n:1;
+   n: .z.s[pats] first tws];
+  
+/  if[0<count tws[0];   0N!(`$ tws[0]),n];
+  
+  total +: n;
   tws: 1_ tws;
   ];
 
- MEMO[`$tw]: total;
+ MEMO[stw]: total;
  total
  }
 
