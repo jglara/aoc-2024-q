@@ -76,3 +76,32 @@ d17p1:{[input]
 
  halted[prog] run1[prog]/state
  }
+
+
+////////////////////////////////////////
+// part 2
+
+// digit output after one loop
+// a is an array of octal digits
+loop:{[prog;a]
+ a: 8 sv a; // convert to decimal
+ state: (`a`b`c`pc`o!a,0,0,0,enlist "");
+ state: (floor count[prog]%2) run1[prog]/state;
+ "J"$ 1_ state[`o]
+ }
+
+// next poddible digit that produces the next program code
+nextdigit:{[prog;a]
+ outs: loop[prog] each a,/: til 8; / loop output adding all possible digits
+ o: reverse[prog] @ count[a]; / next expected output
+ where o=outs / digits that makes the expected output
+ }
+
+d17p2:{[input]
+ rxs: raze "J"$ (1_ ": "vs) each _[0, where 0 = count each input;input] 0;
+ prog: raze "J"$ (","vs) raze 1_":"vs _[0, where 0 = count each input;input] [1;1];
+ 
+ poss: count[prog] {[prog;queue] raze queue ,/:' nextdigit[prog] each queue}[prog]/enlist[()];
+
+ min (8 sv) each poss
+ }
