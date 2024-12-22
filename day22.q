@@ -15,3 +15,19 @@ nsec:{
 d22p1:{[input]
  sum { 2000 nsec/ x}  each input
  }
+
+
+price:{[n;x]
+ {last 10 vs x} each {[n;x] n nsec\ x}[n] x
+ }
+
+wprice:{[n;x]
+ p: price[n;x];
+ ws: {1_x,y}\[4#0; deltas p];
+ (3_ ws) ! 3_ p
+ }
+
+
+d22p2:{[input]
+ max sum wprice[2000] each input
+ }
