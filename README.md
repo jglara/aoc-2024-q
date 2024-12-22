@@ -22,6 +22,8 @@ This repo are the solutions of [Advent Of Code 2024](https://adventofcode/2024)
 | [Day 17: Chronospatial Computer](https://adventofcode.com/2024/day/17) | [Code](day17.q)                       |                                                                                                                                                                            |
 | [Day 18: RAM Run](https://adventofcode.com/2024/day/18)                | [Code](day18.q)                       |                                                                                                                                                                            |
 | [Day 19: Linen Layout](https://adventofcode.com/2024/day/19)           | [Code](day19.q)                       | Memoization                                                                                                                                                                |
+| [Day 20: Race condition](https://adventofcode.com/2024/day/20)         | [Code](day20.q)                       | BFS again                                                                                                                                                                  |
+|                                                                        |                                       |                                                                                                                                                                            |
 
 
 

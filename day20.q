@@ -48,8 +48,25 @@ d20p1:{[m]
  ps: raze til[count m] ,/:' where each ds<>0Wj;
 
  cs: raze {[ds;ps;d] cheatsave[ds;;d] each ps}[ds;ps] each D;
-/  break;
- sum count each group cs where cs>=100
+
+ sum count each group cs where cs>=100 
+
+ }
+
+cheatsave20:{[ds;p1;p2]
+ md: sum abs[p2 - p1]; / manhattan distance
+  $[20>=md; .[ds;p2]- .[ds;p1] + md; 0]
+ }
+
+d20p2:{[m]
+ s: first locate[m;"S"];
+ e: first locate[m;"E"];
+
+ ds: bfs[m;s;e];
  
+ ps: raze til[count m] ,/:' where each ds<>0Wj;
+
+ cs: raze ps cheatsave20[ds]/:\: ps;
+ sum count each group cs where cs>=100 
 
  }
