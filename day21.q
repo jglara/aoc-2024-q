@@ -15,8 +15,8 @@ npseq:{[pad;invalid;t1;t2]
  d1: 0i,signum[d 1];
  p1: (abs[d][1] # enlist[d1]), (abs[d][0] # enlist[d0]); / path 1
  p2: (abs[d][0] # enlist[d0]), (abs[d][1] # enlist[d1]); / path 2
- 
- ?[any invalid in pad[t2] +\ p1; p2; p2] 
+
+ ?[any invalid in pad[t2] +\ p2; p1; p2] 
  
  }
 
@@ -25,9 +25,9 @@ seq2pad:{[pad;invalid;seq]
  }
 
 chainpads:{[seq]
- seq: seq2pad[numpad2dir;3 0;seq];
- seq: seq2pad[dirpad2dir;0 0;seq];
- seq: seq2pad[dirpad2dir;0 0;seq];
+ seq: 0N! seq2pad[numpad2dir;3 0i;seq];
+ seq: 0N! seq2pad[dirpad2dir;0 0i;seq];
+ seq: seq2pad[dirpad2dir;0 0i;seq];
  seq
  }
 
