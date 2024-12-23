@@ -13,26 +13,50 @@ npseq:{[pad;invalid;t1;t2]
  d: pad[t1] - pad[t2];
  d0: signum[d 0],0i;
  d1: 0i,signum[d 1];
- p1: (abs[d][1] # enlist[d1]), (abs[d][0] # enlist[d0]); / path 1
- p2: (abs[d][0] # enlist[d0]), (abs[d][1] # enlist[d1]); / path 2
+ p1: (abs[d][1] # enlist[d1]), (abs[d][0] # enlist[d0]); / path 1 row, column
+ p2: (abs[d][0] # enlist[d0]), (abs[d][1] # enlist[d1]); / path 2 column,row
 
- ?[any invalid in pad[t2] +\ p2; p1; p2] 
+ if[any invalid in pad[t2] +\ p2; :enlist[p1]];
+ if[any invalid in pad[t2] +\ p1; :enlist[p2]];
+
+ distinct enlist[p1],enlist[p2]
  
  }
 
-seq2pad:{[pad;invalid;seq]
- raze ,[;"A"] each dir2dirpad each npseq[pad;invalid] prior seq
+
+/ cost of pressing a key /giving by the sequence ks
+/ kpcost: cost of each key (from the previos level
+kcost:{[kpcost; ks]
+ {[kpcost;x] sum kpcost prior x}[kpcost] each "^v<>A" ? ,["A"] each ks
  }
 
-chainpads:{[seq]
- seq: 0N! seq2pad[numpad2dir;3 0i;seq];
- seq: 0N! seq2pad[dirpad2dir;0 0i;seq];
- seq: seq2pad[dirpad2dir;0 0i;seq];
- seq
+kscosts:{[kpcost]
+ "^v<>A" {[kpcost;x;y] min kcost[kpcost] trim each ,[;"A"] each dir2dirpad npseq[dirpad2dir;0 0i;x;y]}[kpcost]/:\: "^v<>A"
  }
+
+dscosts:{[kpcost]
+ "0123456789A" {[kpcost;x;y] min kcost[kpcost] trim each ,[;"A"] each dir2dirpad npseq[numpad2dir;3 0i;x;y]}[kpcost]/:\: "0123456789A"
+ }
+
 
 d21p1:{[input]
- cs: count each chainpads each input;
- ns: "J"$ -1_/: input;
- sum cs * ns
+ kpcost: 5 5 # 1;
+ kpcost: 2 kscosts/ kpcost;
+ dcost: dscosts[kpcost];
+
+
+ cs: {[dcost;x] sum {[dcost;x;y] dcost[x;y] }[dcost] prior "0123456789A" ? x }[dcost] each ,["A"] each input;
+ ns:"J"$ (-1_) each input;
+ sum cs * ns 
+ }
+
+d21p2:{[input]
+ kpcost: 5 5 # 1;
+ kpcost: 25 kscosts/ kpcost;
+ dcost: dscosts[kpcost];
+
+
+ cs: {[dcost;x] sum {[dcost;x;y] dcost[x;y] }[dcost] prior "0123456789A" ? x }[dcost] each ,["A"] each input;
+ ns:"J"$ (-1_) each input;
+ sum cs * ns 
  }

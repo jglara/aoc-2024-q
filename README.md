@@ -23,7 +23,8 @@ This repo are the solutions of [Advent Of Code 2024](https://adventofcode/2024)
 | [Day 18: RAM Run](https://adventofcode.com/2024/day/18)                | [Code](day18.q)                       |                                                                                                                                                                            |
 | [Day 19: Linen Layout](https://adventofcode.com/2024/day/19)           | [Code](day19.q)                       | Memoization                                                                                                                                                                |
 | [Day 20: Race condition](https://adventofcode.com/2024/day/20)         | [Code](day20.q)                       | BFS again                                                                                                                                                                  |
-|                                                                        |                                       |                                                                                                                                                                            |
+| [Day 21: Keypad conundrum](https://adventofcode.com/2024/day/21)       | [Code](day21.q)                       |                                                                                                                                                                            |
+| [Day 22: Monkey market](https://adventofcode.com/2024/day/22)          | [Code](day22.q)                       |                                                                                                                                                                            |
 
 
 
