@@ -5,20 +5,30 @@ neighs:{[input;x]
  except[;x] raze input where any each input = x
  }
 
-triads:{[vxs]
- asc distinct asc each raze {[vxs;x] (x[0], x[1]),/: neighs[vxs;x 0] inter neighs[vxs;x 1] }[vxs] each vxs
- }
-
 d23p1:{[input]
  nds: distinct raze input;
  ts: `$ nds where like[;"t?"] each nds;
  vxs: `$ input;
 
- trs: triads[vxs];
- trs: trs where any each trs in ts;
-
- count trs
-
- /adj: nds ! {[input;x] input[;1] where input[;0] = x}[input] each nds;
+ clis: vxs where any each vxs in ts;
+ clis: inccli[vxs;clis];
+ count clis
  
+ }
+
+/ list of cliques 1 element bigger than cli
+inccli:{[vxs;clis]
+ clis: clis ,/:' ((inter/) neighs[vxs] each) each clis;
+ asc distinct asc each raze clis
+ }
+
+d23p2:{[input]
+ nds: distinct raze input;
+ ts: `$ nds where like[;"t?"] each nds;
+ vxs: `$ input;
+
+ clis: vxs where any each vxs in ts;
+ clis: {count x} inccli[vxs]\clis;
+ break;
+ last -1_ clis
  }
