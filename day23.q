@@ -1,24 +1,34 @@
 input0: ("-"vs) each read0 `:data/day23_test.txt
 input: ("-"vs) each read0 `:data/day23.txt
 
-neighs:{[input;x]
- except[;x] raze input where any each input = x
+adj:{[vxs;nds]
+ nds ! {[vxs;x] except[;x] raze vxs where any each vxs = x}[vxs] each nds
  }
 
-triads:{[vxs]
- asc distinct asc each raze {[vxs;x] (x[0], x[1]),/: neighs[vxs;x 0] inter neighs[vxs;x 1] }[vxs] each vxs
+
+triads:{[adja; vxs]
+ 
+ asc distinct asc each raze {[adja;vxs;x] x,/: (inter/) adja each x }[adja;vxs] each vxs
  }
 
 d23p1:{[input]
  nds: distinct raze input;
  ts: `$ nds where like[;"t?"] each nds;
  vxs: `$ input;
+ nds: `$ nds;
 
- trs: triads[vxs];
+ adja: adj[vxs; nds];
+ trs: triads[adja;vxs];
  trs: trs where any each trs in ts;
 
- count trs
+ count trs 
+ }
 
- /adj: nds ! {[input;x] input[;1] where input[;0] = x}[input] each nds;
- 
+d23p2:{[input]
+ nds: `$ distinct raze input;
+ vxs: `$ input;
+
+ adja: adj[vxs; nds];
+ trs: triads[adja] scan vxs;
+ "," sv string first first -2#trs
  }
