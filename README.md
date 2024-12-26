@@ -26,6 +26,7 @@ This repo are the solutions of [Advent Of Code 2024](https://adventofcode/2024)
 | [Day 21: Keypad conundrum](https://adventofcode.com/2024/day/21)       | [Code](day21.q)                       |                                                                    |
 | [Day 22: Monkey market](https://adventofcode.com/2024/day/22)          | [Code](day22.q)                       |                                                                    |
 | [Day 23: LAN Party](https://adventofcode.com/2024/day/23)              | [Code](day23.q)                       |                                                                    |
+| [Day 24: Crossed wires](https://adventofcode.com/2024/day/24)          | [Code](day24.q)                       |                                                                    |
 
 
 
