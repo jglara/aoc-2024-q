@@ -6,6 +6,7 @@ adj:{[vxs;nds]
  }
 
 
+
 triads:{[adja; vxs]
  
  asc distinct asc each raze {[adja;vxs;x] x,/: (inter/) adja each x }[adja;vxs] each vxs
@@ -16,6 +17,7 @@ d23p1:{[input]
  ts: `$ nds where like[;"t?"] each nds;
  vxs: `$ input;
  nds: `$ nds;
+
 
  adja: adj[vxs; nds];
  trs: triads[adja;vxs];
@@ -29,6 +31,7 @@ d23p2:{[input]
  vxs: `$ input;
 
  adja: adj[vxs; nds];
- trs: triads[adja] scan vxs;
+ trs: triads[adja]\vxs;
  "," sv string first first -2#trs
  }
+
